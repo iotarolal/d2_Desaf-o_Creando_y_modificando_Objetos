@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO</title>
+  </head>
+  <body>
+    <h1>Desafío - Creando y modificando Objetos</h1>
+    <script>
+
+      // Primero creamos las clases (consultorio)
+      function Consultorio (_nombre) {
+        this.nombre = _nombre;
+        this.pacientes = [];
+
+        this.addPaciente = function(nuevopaciente){
+          this.pacientes.push(nuevopaciente);
+        } 
+        this.showPacientes = function(){
+          for (paciente of this.pacientes) {
+            paciente.show();
+          }
+        }
+        
+        this.filterPacientes = function (nombre) {
+          for (paciente of this.pacientes) {
+            if (paciente.nombre.toUpperCase() == nombre.toUpperCase()) {
+              paciente.show();
+            }
+          }
+        }
+      }
+
+      // Creamos clase paciente
+      function Paciente (_nombre, _rut, _diagnostico, _edad) {
+        this.nombre = _nombre;
+        this.rut = _rut;
+        this.diagnostico = _diagnostico;
+        this.edad = _edad;
+
+        this.show = function() {
+          console.log(`Paciente se llama ${this.nombre} y su diagnóstico es ${this.diagnostico}`)
+        }
+      }
+      // creamos las instancias
+      const consalud = new Consultorio('consalud');
+      const paciente1 = new Paciente('Marcelo Brintrup', '10526356-8', 'Jaqueca',45);
+      const paciente2 = new Paciente('Macarena Tapia', '15123656-9', 'depresion',32);
+      const paciente3 = new Paciente('Paula Sanches', '10524123-9', 'covid',52);
+      const paciente4 = new Paciente('Matías Camaño', '53234123-9', 'gastritis',18);
+
+      // agregamos paciente1, paciente2, paciente3 y paciente3 a consalud
+      consalud.addPaciente(paciente1);
+      consalud.addPaciente(paciente2);
+      consalud.addPaciente(paciente3);
+      consalud.addPaciente(paciente4);
+
+      // ejecuto consulta console.log metodo showPacientes() del consultorio, para ver listado paciente.
+      console.log(`${consalud.showPacientes()}`)
+
+    </script>
+  </body>
+</html>
